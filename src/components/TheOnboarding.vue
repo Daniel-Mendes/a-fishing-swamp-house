@@ -127,7 +127,7 @@ a {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #333;
+  background-color: #313F35;
   color: #ccc;
   width: 100vw;
   height: 100vh;

@@ -151,7 +151,7 @@ a {
   font-size: 1.3rem;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
-  background-color: white;
+  background-color: #f9ca24;
   color: black;
   border: none;
   cursor: pointer;

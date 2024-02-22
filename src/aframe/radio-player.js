@@ -4,11 +4,19 @@ AFRAME.registerComponent("radio-player", {
     let currentSongIdx = 0;
     const songs = [
       {
-        src: "#swamp-1-audio",
+        src: "#radio-noise-sound",
         el: null,
       },
       {
-        src: "#swamp-2-audio",
+        src: "#swamp-1-sound",
+        el: null,
+      },
+      {
+        src: "#radio-noise-sound",
+        el: null,
+      },
+      {
+        src: "#swamp-2-sound",
         el: null,
       },
     ];

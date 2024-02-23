@@ -1,7 +1,12 @@
 <script>
 import '../aframe/physx-force-pushable.js';
 import '../aframe/clickable.js';
+import '../aframe/listen-to.js'
+
 import '../aframe/radio-player.js';
+import '../aframe/barrel-manager.js'
+import '../aframe/bell-manager.js';
+
 import '../aframe/fireflies-wander.js'
 </script>
 
@@ -18,7 +23,9 @@ import '../aframe/fireflies-wander.js'
             light="type: point; intensity: 2; distance: 50; color: #f9ca24; groundColor: #B49A70; castShadow: true; shadowCameraFar: 25; shadowBias: -0.001; shadowMapHeight: 2048; shadowMapWidth: 2048; shadowCameraLeft: -50; shadowCameraRight: 50; shadowCameraBottom: -50; shadowCameraTop: 50"
             position="1.267 1.50067 1.02055" scale="0.1 0.1 0.1"></a-entity>
 
-        <a-sound id="bell" src="#bell-sound" position="1.493 0.346 0.263" autoplay="false" loop="false"></a-sound>
+        <a-entity id="bell" position="1.493 0.346 0.263"
+            sound="src: #bell-sound; autoplay: false; loop: false; poolSize: 5;"
+            listen-to="target: #barrel; event: new-fish; emit: ring" bell-manager></a-entity>
 
         <a-entity id="fireflies" fireflies-wander="model: #firefly-model; count: 6; radius: 5" position="0.4 0.2 1"
             scale="0.1 0.1 0.1"></a-entity>
@@ -26,13 +33,13 @@ import '../aframe/fireflies-wander.js'
         <a-entity id="boat" gltf-model="#boat-model"
             animation="property: position; easing: easeInOutQuad; dir: alternate; dur: 1000; to: 0 -0.2 0; loop: true"></a-entity>
 
-        <a-entity id="barrel" gltf-model="#barrel-model" position="1.036 0.05 0.372">
-            <a-entity id="fish-1" gltf-model="#trout-fish-model" position="-0.00887 0.10792 0.02075" scale="0.3 0.3 0.3"
-                rotation="50 0 30"></a-entity>
+        <a-entity id="barrel" gltf-model="#barrel-model" position="1.036 0.05 0.372" clickable barrel-manager>
+            <a-entity id="fish-1" class="fishes" gltf-model="#trout-fish-model" position="-0.00887 0.10792 0.02075"
+                scale="0.3 0.3 0.3" rotation="50 0 30" visible="false"></a-entity>
         </a-entity>
 
         <a-entity id="radio" gltf-model="#radio-model" position="0.1 0.04 0.1" rotation="0 45 0" scale="0.6 0.6 0.6"
-            clickable radio-player></a-entity>
+            clickable physx-body="type: static" physx-grabbable radio-player></a-entity>
     </a-entity>
 
     <!-- <a-entity id="spear" gltf-model="#spear-model" position="0.3 0.1 0.545" rotation="20 90 0"

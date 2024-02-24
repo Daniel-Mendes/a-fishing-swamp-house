@@ -1,6 +1,6 @@
 AFRAME.registerComponent("barrel-manager", {
   init: function () {
-    const fishesEl = document.querySelectorAll(".fishes");
+    const fishesEl = document.querySelectorAll(".barrel-fishes");
     let fishes = 0;
 
     this.el.addEventListener("click", () => {
@@ -17,15 +17,11 @@ AFRAME.registerComponent("barrel-manager", {
       //   });
       // }
 
-      // for test ring the count of fishes
-      fishes = 3;
-
-      for (let i = 0; i < fishes; i++) {
-        setTimeout(() => {
-          // emit event new-fish
-          this.el.dispatchEvent(new CustomEvent("new-fish"));
-        }, i * 1000);
-      }
+      // Emit an event when the barrel added a fish
+      const event = new CustomEvent("change", {
+        detail: { fishes },
+      });
+      this.el.dispatchEvent(event);
     });
   },
 });

@@ -17,11 +17,11 @@ AFRAME.registerComponent("fireflies-wander", {
       const z = this.el.object3D.position.z + Math.random() * this.data.radius;
       aEntity.object3D.position.set(x, y, z);
 
-      // Randomize firefly rotation
+      // Randomize firefly rotation but keep it small
       aEntity.object3D.rotation.set(
-        Math.random() * Math.PI,
-        0,
-        Math.random() * Math.PI
+        Math.random() * 1.8,
+        Math.random() * 1.8,
+        Math.random() * 1.8
       );
 
       // Firefly animation

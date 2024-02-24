@@ -1,10 +1,10 @@
-AFRAME.registerComponent('listen-to', {
+AFRAME.registerComponent("listen-to", {
   multiple: true,
 
   schema: {
-    target: {type: 'selector'},
-    event: {type: 'string', default: 'click'},
-    emit: {type: 'string', default: 'click'},
+    target: { type: "selector" },
+    event: { type: "string", default: "click" },
+    emit: { type: "string", default: "click" },
   },
 
   init: function () {
@@ -12,13 +12,21 @@ AFRAME.registerComponent('listen-to', {
     this.data.target.addEventListener(this.data.event, this.onEvent);
   },
 
-  onEvent: function () {
-    this.el.emit(this.data.emit);
+  onEvent: function (e) {
+    const event = new CustomEvent(this.data.emit, {
+      detail: e.detail,
+    });
+
+    this.el.dispatchEvent(event);
   },
 
   update: function (oldData) {
-    if (oldData.target != this.data.target || oldData.event != this.data.event) {
-      if (oldData.target) oldData.target.removeEventListener(oldData.event, this.onEvent);
+    if (
+      oldData.target != this.data.target ||
+      oldData.event != this.data.event
+    ) {
+      if (oldData.target)
+        oldData.target.removeEventListener(oldData.event, this.onEvent);
       this.data.target.addEventListener(this.data.event, this.onEvent);
     }
   },
@@ -26,5 +34,4 @@ AFRAME.registerComponent('listen-to', {
   remove: function () {
     this.data.target.removeEventListener(this.data.event, this.onEvent);
   },
-
 });

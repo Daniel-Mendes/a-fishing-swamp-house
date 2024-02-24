@@ -1,13 +1,10 @@
 AFRAME.registerComponent("bell-manager", {
-  schema: {
-    event: { type: "string", default: "change" },
-  },
   init: function () {
     this.el.addEventListener("click", () => {
       this.el.emit("ring");
     });
 
-    this.el.addEventListener(this.data.event, ({ detail }) => {
+    this.el.addEventListener("barrel-change", ({ detail }) => {
       const barrelFishesCount = detail.fishes;
 
       for (let i = 0; i < barrelFishesCount; i++) {

@@ -25,9 +25,12 @@ import '../aframe/fireflies-wander.js'
             light="type: point; intensity: 2; distance: 50; color: #f9ca24; groundColor: #B49A70; castShadow: true; shadowCameraFar: 25; shadowBias: -0.001; shadowMapHeight: 2048; shadowMapWidth: 2048; shadowCameraLeft: -50; shadowCameraRight: 50; shadowCameraBottom: -50; shadowCameraTop: 50"
             position="1.267 1.50067 1.02055" scale="0.1 0.1 0.1"></a-entity>
 
-        <a-entity id="bell" gltf-model="#bell-model" clickable listen-to="target: #barrel; event: change; emit: change"
+        <a-entity id="bell" gltf-model="#bell-model" position="1.511 0.428 0.263"
             sound="on: ring; src: #bell-sound; volume: 2; autoplay: false; loop: false; poolSize: 5;"
-            animation="startEvents: ring; property: rotation; to: 0 0 45; dur: 1000;" bell-manager>
+            animation__left="startEvents: ring; property: rotation; from: 0 0 0; to: 0 0 45; dur: 250;"
+            animation__right="startEvents: ring; property: rotation; from: 0 0 45; to: 0 0 -45; dur: 500; delay: 250"
+            animation__default="startEvents: ring; property: rotation; from: 0 0 -45; to: 0 0 0; dur: 250; delay: 750"
+            clickable listen-to="target: #barrel; event: change; emit: barrel-change" bell-manager>
         </a-entity>
 
         <a-entity id="fireflies" fireflies-wander="model: #firefly-model; count: 6; radius: 5" position="0.4 0.2 1"
@@ -51,20 +54,23 @@ import '../aframe/fireflies-wander.js'
         </a-entity>
     </a-entity>
 
-
-
     <!-- <a-entity id="spear" gltf-model="#spear-model" position="0.3 0.1 0.545" rotation="20 90 0"
         scale="0.4 0.4 0.4"></a-entity> -->
 
     <!-- Fishing area -->
-    <a-box id="fishing-area" width="0.9" height="0.5" depth="2" color="blue" opacity="0.8" position="-0.5 -0.5 0.9"
-        listen-to="target: #barrel; event: change; emit: change" fishing-area-manager>
-        <a-entity class="ocean-fishes" gltf-model="#trout-fish-model" rotation="0 90 0"></a-entity>
+    <a-box id="fishing-area" width="0.9" height="0.2" depth="2" color="blue" opacity="0.8" position="-0.5 -0.5 0.9"
+        listen-to__barrel_change="target: #barrel; event: change; emit: barrel-change"
+        listen-to__fishes_click="target: .ocean-fishes; event: click: emit: fish-caught" fishing-area-manager>
+        <a-entity class="ocean-fishes" gltf-model="#trout-fish-model"
+            animation__wagging="property: rotation; from: 0 75 0; to: 0 105 0; dur: 1000; dir: alternate; easing: easeInOutSine; loop: true;"
+            animation__move="property: position; from: 0 0 1; to: 0 0 -1; dur: 10000; startEvents: fish-appear"
+            physx-grabbable clickable emit-when-near>
+        </a-entity>
     </a-box>
 
     <!-- Water -->
     <a-entity position="0 -0.5 0" id="oceans">
-        <a-ocean depth="100" width="100" color="#313F35" amplitude="0" amplitude-variance="0.1" opacity="1"
+        <a-ocean depth="100" width="100" color="#313F35" amplitude="0" amplitude-variance="0.1" opacity="0.5"
             density="50"></a-ocean>
         <a-ocean depth="100" width="100" color="#313F35" amplitude="0.2" amplitude-variance="0.15" opacity="0.5"
             density="50"></a-ocean>

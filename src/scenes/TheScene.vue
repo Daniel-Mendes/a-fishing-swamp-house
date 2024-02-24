@@ -23,7 +23,7 @@ const allAssetsLoaded = ref(false);
       <a-asset-item id="lighthouse-model" src="assets/models/lighthouse.glb"></a-asset-item>
       <a-asset-item id="boat-model" src="assets/models/boat.glb"></a-asset-item>
       <a-asset-item id="bouet-model" src="assets/models/bouet.glb"></a-asset-item>
-      <a-asset-item id="bell-model" src="assets/models/bell.glb"></a-asset-item>
+      <a-asset-item id="bell-model" src="assets/models/bell_center.glb"></a-asset-item>
       <a-asset-item id="radio-model" src="assets/models/radio.glb"></a-asset-item>
       <a-asset-item id="firefly-model" src="assets/models/firefly.glb"></a-asset-item>
       <a-asset-item id="barrel-model" src="assets/models/barrel.glb"></a-asset-item>

@@ -8,7 +8,8 @@ const allAssetsLoaded = ref(false);
 </script>
 
 <template>
-  <a-scene renderer="antialias: true;" fog="type: linear; color: #3A3D1F; far: 18" background="color: black;" :webxr="`
+  <a-scene renderer="antialias: true;" fog="type: linear; color: #3A3D1F; near: 3; far: 10" background="color: black;"
+    :webxr="`
       requiredFeatures: local-floor;
       referenceSpaceType: local-floor;
     `" xr-mode-ui="XRMode: xr" physx="
@@ -20,14 +21,16 @@ const allAssetsLoaded = ref(false);
 
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Models -->
-      <a-asset-item id="lighthouse-model" src="assets/models/lighthouse.glb"></a-asset-item>
+      <a-asset-item id="house-model" src="assets/models/house.glb"></a-asset-item>
       <a-asset-item id="boat-model" src="assets/models/boat.glb"></a-asset-item>
       <a-asset-item id="bouet-model" src="assets/models/bouet.glb"></a-asset-item>
       <a-asset-item id="bell-model" src="assets/models/bell_center.glb"></a-asset-item>
       <a-asset-item id="radio-model" src="assets/models/radio.glb"></a-asset-item>
       <a-asset-item id="firefly-model" src="assets/models/firefly.glb"></a-asset-item>
       <a-asset-item id="barrel-model" src="assets/models/barrel.glb"></a-asset-item>
-      <!-- <a-asset-item id="spear-model" src="assets/models/spear.glb"></a-asset-item> -->
+      <a-asset-item id="fishing-rod-model" src="assets/models/fishing_rod.glb"></a-asset-item>
+      <a-asset-item id="fishing-line-model" src="assets/models/fishing_line.glb"></a-asset-item>
+      <!-- <a-asset-item id="fishspear-model" src="assets/models/fishspear.glb"></a-asset-item> -->
       <a-asset-item id="trout-fish-model" src="assets/models/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
       <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav"></audio>

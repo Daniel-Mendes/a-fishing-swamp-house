@@ -2,10 +2,14 @@
 import '../aframe/physx-force-pushable.js';
 import '../aframe/clickable.js';
 import '../aframe/listen-to.js'
+import '../aframe/event-set.js';
+import '../aframe/bind-position.js';
+import '../aframe/bind-rotation.js';
 
 import '../aframe/radio-player.js';
 import '../aframe/barrel-manager.js'
 import '../aframe/bell-manager.js';
+import '../aframe/weapon-manager.js';
 import '../aframe/fishing-area-manager.js';
 
 import '../aframe/floating-animation.js';
@@ -14,39 +18,23 @@ import '../aframe/fireflies-wander.js'
 
 <template>
     <a-sky color="#111126"></a-sky>
-    <a-entity id="ambient-light" light="type: ambient; color: #f9ca24; intensity:0.1;"></a-entity>
-    <a-entity id="rain" particle-system="preset: rain; color: #eee; particleCount: 1000"></a-entity>
     <!-- Size of area to play-->
-    <!-- <a-box width="2" height="0.1" depth="2" color="blue" opacity="0.8" position="1 0 1"></a-box> -->
+    <!-- <a-box width="2" height="0.1" depth="2" color="red" opacity="0.8"></a-box> -->
 
-    <a-entity id="lighthouse-entity" gltf-model="#lighthouse-model" position="0 0 0" shadow="cast:true; receive:true;"
+    <a-entity id="house" gltf-model="#house-model" animation-mixer position="0 0 0" shadow="cast:true; receive:true;"
         physx-body="type: static">
-        <a-entity id="lighthouse-light-source"
-            light="type: point; intensity: 2; distance: 50; color: #f9ca24; groundColor: #B49A70; castShadow: true; shadowCameraFar: 25; shadowBias: -0.001; shadowMapHeight: 2048; shadowMapWidth: 2048; shadowCameraLeft: -50; shadowCameraRight: 50; shadowCameraBottom: -50; shadowCameraTop: 50"
-            position="1.267 1.50067 1.02055" scale="0.1 0.1 0.1"></a-entity>
+        <a-light type="ambient" color="#fae3a2" intensity="0.5" castShadow="true" position="-1.292 0.919 -1.518"
+            scale="0.1 0.1 0.1"></a-light>
 
-        <a-entity id="bell" gltf-model="#bell-model" position="1.511 0.428 0.263"
-            sound="on: ring; src: #bell-sound; volume: 2; autoplay: false; loop: false; poolSize: 5;"
-            animation__left="startEvents: ring; property: rotation; from: 0 0 0; to: 0 0 45; dur: 250;"
-            animation__right="startEvents: ring; property: rotation; from: 0 0 45; to: 0 0 -45; dur: 500; delay: 250"
-            animation__default="startEvents: ring; property: rotation; from: 0 0 -45; to: 0 0 0; dur: 250; delay: 750"
-            clickable listen-to="target: #barrel; event: change; emit: barrel-change" bell-manager>
-        </a-entity>
-
-        <a-entity id="fireflies" fireflies-wander="model: #firefly-model; count: 6; radius: 5" position="0.4 0.2 1"
-            scale="0.1 0.1 0.1"></a-entity>
-
-        <a-entity id="boat" gltf-model="#boat-model" floating-animation></a-entity>
-
-        <a-entity id="bouet" gltf-model="#bouet-model" floating-animation></a-entity>
+        <a-entity id="fireflies" fireflies-wander="model: #firefly-model; count: 6; radius: 4" position="-1.3 0.3 -1.5"
+            scale="0.3 0.3 0.3"></a-entity>
 
         <a-entity id="barrel" gltf-model="#barrel-model" position="1.036 0.05 0.372" clickable barrel-manager>
             <a-entity class="barrel-fishes" gltf-model="#trout-fish-model" position="-0.00887 0.10792 0.02075"
                 scale="0.3 0.3 0.3" rotation="50 0 30" visible="false"></a-entity>
         </a-entity>
 
-        <a-entity id="radio" gltf-model="#radio-model" position="0.1 0.04 0.1" rotation="0 45 0" scale="0.6 0.6 0.6"
-            clickable physx-body="type: static" physx-grabbable radio-player>
+        <a-entity id="radio" gltf-model="#radio-model" position="1.2 0 1.8" clickable radio-player>
             <a-sound src="#radio-noise-sound" volume="1"></a-sound>
             <a-sound src="#swamp-1-sound" volume="0.4"></a-sound>
             <a-sound src="#radio-noise-sound" volume="1"></a-sound>
@@ -57,19 +45,29 @@ import '../aframe/fireflies-wander.js'
     <!-- <a-entity id="spear" gltf-model="#spear-model" position="0.3 0.1 0.545" rotation="20 90 0"
         scale="0.4 0.4 0.4"></a-entity> -->
 
+    <a-entity id="fishing-rod" gltf-model="#fishing-rod-model" bind-position="target: #hand-right"
+        bind-rotation="target: #hand-right">
+    </a-entity>
+
+    <a-entity id="fishing-line" gltf-model="#fishing-line-model" bind-position="target: #fishing-rod">
+        <a-box id="fishing-hook" width="0.15" height="0.15" depth="0.15" position="-0.1 -1.3 -1.3" color="red" opactiy="0.5"
+            listen-to="target: #fishing-area; event: fish-caught; emit: fish-caught" data-aabb-collider-dynamic
+            weapon-manager>
+            <a-entity gltf-model="#trout-fish-model"
+                animation="property: rotation; from: 0 75 0; to: 0 105 0; dur: 1000; dir: alternate; easing: easeInOutSine; loop: true;"
+                physx-grabbable>
+            </a-entity>
+        </a-box>
+    </a-entity>
+
     <!-- Fishing area -->
-    <a-box id="fishing-area" width="0.9" height="0.2" depth="2" color="blue" opacity="0.8" position="-0.5 -0.5 0.9"
+    <a-box id="fishing-area" width="6" depth="6" height="5" color="blue" opacity="0.8" position="0 2.227 0.975"
         listen-to__barrel_change="target: #barrel; event: change; emit: barrel-change"
-        listen-to__fishes_click="target: .ocean-fishes; event: click: emit: fish-caught" fishing-area-manager>
-        <a-entity class="ocean-fishes" gltf-model="#trout-fish-model"
-            animation__wagging="property: rotation; from: 0 75 0; to: 0 105 0; dur: 1000; dir: alternate; easing: easeInOutSine; loop: true;"
-            animation__move="property: position; from: 0 0 1; to: 0 0 -1; dur: 10000; startEvents: fish-appear"
-            physx-grabbable clickable emit-when-near>
-        </a-entity>
+        aabb-collider="objects: #fishing-hook;" fishing-area-manager>
     </a-box>
 
-    <!-- Water -->
-    <a-entity position="0 -0.5 0" id="oceans">
+    <!-- Sea -->
+    <a-entity position="0 -1.2 0" id="sea">
         <a-ocean depth="100" width="100" color="#313F35" amplitude="0" amplitude-variance="0.1" opacity="0.5"
             density="50"></a-ocean>
         <a-ocean depth="100" width="100" color="#313F35" amplitude="0.2" amplitude-variance="0.15" opacity="0.5"

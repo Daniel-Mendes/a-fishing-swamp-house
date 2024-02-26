@@ -11,7 +11,7 @@ import '../aframe/physx-grab.js';
 
     <a-entity id="head" look-controls="pointerLockEnabled: true"
       simple-navmesh-constraint="navmesh: [data-role='nav-mesh']; height: 1.65;"
-      disable-in-vr="component: simple-navmesh-constraint;" camera position="0.328 1.6 0.891">
+      disable-in-vr="component: simple-navmesh-constraint;" camera position="0 1.6 0">
       <a-entity geometry="primitive: circle; radius: 0.0003;" material="shader: flat; color: white;" cursor
         raycaster="far: 4; objects: [clickable]; showLine: false;" position="0 0 -0.1"
         disable-in-vr="component: raycaster; disableInAR: false;" hide-in-vr="hideInAR: false"></a-entity>
@@ -28,7 +28,7 @@ import '../aframe/physx-grab.js';
       </a-sphere>
     </a-entity>
 
-    <a-entity id="hand-right" hand-controls="hand: right" laser-controls="hand: right"
+    <a-entity id="hand-right" hand-controls="hand: right" haptics laser-controls="hand: right"
       raycaster="far: 4; objects: [clickable]; showLine: true;" physx-grab>
       <a-sphere id="hand-right-collider" radius="0.02" visible="false"
         physx-body="type: kinematic; emitCollisionEvents: true">

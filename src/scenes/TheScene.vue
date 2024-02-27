@@ -30,7 +30,6 @@ const allAssetsLoaded = ref(false);
       <a-asset-item id="barrel-model" src="assets/models/barrel.glb"></a-asset-item>
       <a-asset-item id="fishing-rod-model" src="assets/models/fishing_rod.glb"></a-asset-item>
       <a-asset-item id="fishing-line-model" src="assets/models/fishing_line.glb"></a-asset-item>
-      <!-- <a-asset-item id="fishspear-model" src="assets/models/fishspear.glb"></a-asset-item> -->
       <a-asset-item id="trout-fish-model" src="assets/models/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
       <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav"></audio>

@@ -2,28 +2,47 @@ import { randomTimeoutRange } from "../utils/random.js";
 
 AFRAME.registerComponent("fishing-area-manager", {
   init: function () {
-    let isFishing = false;
     let timeoutId = null;
+    let startFishingAt = null;
+    let endFishingAt = null;
+
     const handFishing = document.querySelector("#hand-right");
 
     this.el.addEventListener("hitstart", () => {
       console.log("is not fishing");
 
-      isFishing = false;
+      if (startFishingAt !== null) {
+        endFishingAt = new Date();
+        const fishingDuration = endFishingAt - startFishingAt;
+        console.log("fishingDuration", fishingDuration);
+
+        if (fishingDuration < 1000) {
+          console.log("fish caught");
+          this.el.emit("fish-caught");
+        } else {
+          console.log("fish not caught");
+          this.el.emit("fish-not-caught");
+        }
+
+        startFishingAt = null;
+        endFishingAt = null;
+      }
+
       clearTimeout(timeoutId);
     });
 
     this.el.addEventListener("hitend", () => {
       console.log("is fishing");
-      isFishing = true;
 
       timeoutId = setTimeout(() => {
-        // Make vibrate controller
         console.log("vibrate controller");
-        // TODO: vibrate less duration with each fish caught
-        const durationVibrate = 200;
-        handFishing.components.haptics.pulse(0.5, durationVibrate);
-      }, randomTimeoutRange(1000, 10000));
+
+        const force = 0.5;
+        const duration = 1000;
+        handFishing.components.haptics.pulse(force, duration);
+
+        startFishingAt = new Date();
+      }, randomTimeoutRange(5000, 10000));
     });
 
     this.el.addEventListener("barrel-change", ({ detail }) => {

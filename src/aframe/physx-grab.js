@@ -122,7 +122,7 @@ AFRAME.registerComponent("physx-grab", {
     this.joint = document.createElement("a-entity");
     this.joint.setAttribute(
       "physx-joint",
-      `type: Fixed; target: #${target.id}`
+      `type: fixed; target: #${target.id}`
     );
 
     el.appendChild(this.joint);

@@ -6,6 +6,8 @@ AFRAME.registerComponent("fishing-area-manager", {
     let startFishingAt = null;
     let endFishingAt = null;
 
+    let barrelFishesCount = 0;
+
     const handFishing = document.querySelector("#hand-right");
 
     this.el.addEventListener("hitstart", () => {
@@ -18,7 +20,12 @@ AFRAME.registerComponent("fishing-area-manager", {
 
         if (fishingDuration < 1000) {
           console.log("fish caught");
-          this.el.emit("fish-caught");
+
+          const fishEl = document.querySelector(`#fish-${barrelFishesCount}`);
+          const event = new CustomEvent("fish-caught", {
+            detail: { fishEl: fishEl },
+          });
+          this.el.dispatchEvent(event);
         } else {
           console.log("fish not caught");
           this.el.emit("fish-not-caught");
@@ -41,6 +48,8 @@ AFRAME.registerComponent("fishing-area-manager", {
         const duration = 1000;
         handFishing.components.haptics.pulse(force, duration);
 
+        // const fishEl = document.querySelector(`#fish-${barrelFishesCount}`);
+
         startFishingAt = new Date();
       }, randomTimeoutRange(5000, 10000));
     });
@@ -48,7 +57,7 @@ AFRAME.registerComponent("fishing-area-manager", {
     this.el.addEventListener("barrel-change", ({ detail }) => {
       console.log("fishing-area change");
 
-      const barrelFishesCount = detail.fishes;
+      barrelFishesCount = detail.fishes;
     });
   },
 });

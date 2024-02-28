@@ -32,10 +32,10 @@ const allAssetsLoaded = ref(false);
       <a-asset-item id="fishing-line-model" src="assets/models/fishing_line.glb"></a-asset-item>
       <a-asset-item id="trout-fish-model" src="assets/models/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
-      <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav"></audio>
-      <audio id="bell-sound" src="assets/sounds/bell.mp3"></audio>
-      <audio id="swamp-1-sound" src="assets/sounds/swamp-1.ogg"></audio>
-      <audio id="swamp-2-sound" src="assets/sounds/swamp-2.ogg"></audio>
+      <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav" preload="auto"></audio>
+      <audio id="bell-sound" src="assets/sounds/bell.mp3" preload="auto"></audio>
+      <audio id="swamp-1-sound" src="assets/sounds/swamp-1.ogg" preload="auto"></audio>
+      <audio id="swamp-2-sound" src="assets/sounds/swamp-2.ogg" preload="auto"></audio>
     </a-assets>
 
     <template v-if="allAssetsLoaded">

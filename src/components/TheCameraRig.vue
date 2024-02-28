@@ -17,11 +17,7 @@ import '../aframe/physx-grab.js';
         disable-in-vr="component: raycaster; disableInAR: false;" hide-in-vr="hideInAR: false"></a-entity>
     </a-entity>
 
-    <a-entity id="hand-left" hand-controls="hand: left" physx-grab>
-      <a-sphere id="hand-left-collider" radius="0.02" visible="false"
-        physx-body="type: kinematic; emitCollisionEvents: true">
-      </a-sphere>
-    </a-entity>
+    <a-entity id="hand-left" hand-controls="hand: left;"></a-entity>
 
     <a-entity id="hand-right" hand-controls="hand: right" haptics></a-entity>
   </a-entity>

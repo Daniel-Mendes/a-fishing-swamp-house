@@ -11,7 +11,7 @@ const fullReloadPlugin = {
 
 export default defineConfig(({ command, mode }) => {
   const config = {
-    base: "/a-swamp-lighthouse/",
+    base: "/a-swamp-house/",
     plugins: [
       basicSsl(),
       vue({

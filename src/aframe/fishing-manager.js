@@ -10,12 +10,11 @@ AFRAME.registerComponent("fishing-manager", {
     this.startFishingAt = null;
     this.endFishingAt = null;
 
+    this.barrelFishesCount = 0;
     this.handFishing = document.querySelector("#hand-right");
 
     this.el.addEventListener("barrel-change", ({ detail }) => {
-      console.log("fishing-area change");
-
-      barrelFishesCount = detail.fishes;
+      this.barrelFishesCount = detail.fishes;
     });
 
     this.onHitStart = this.onHitStart.bind(this);
@@ -44,6 +43,7 @@ AFRAME.registerComponent("fishing-manager", {
         const fishEl = document.querySelector(
           `#fish-${this.barrelFishesCount}`
         );
+
         const event = new CustomEvent("fish-caught", {
           detail: { fishEl: fishEl },
         });

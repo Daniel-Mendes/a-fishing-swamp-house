@@ -10,10 +10,7 @@ AFRAME.registerComponent("fishing-hook-manager", {
       console.log("weapon caught fish");
 
       const fishEl = detail.fishEl;
-      fishEl.removeAttribute("bind-position");
-      fishEl.removeAttribute("bind-rotation");
-      //fishEl.setAttribute("bind-position", `target: #${this.el.id}`);
-      // fishEl.setAttribute("bind-rotation", `target: #${this.el.id}`);
+      fishEl.setAttribute("bind-position", `target: #${this.el.id}`);
       fishEl.setAttribute("visible", true);
 
       this.baitEl.remove();

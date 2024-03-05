@@ -2,29 +2,30 @@ AFRAME.registerComponent("barrel-manager", {
   init: function () {
     let fishes = 0;
 
-    this.el.addEventListener("dropped", (event) => {
-      console.log("item dropped in barrel");
-      console.log(event);
+    this.el.addEventListener("dropped", ({ detail }) => {
+      const { droppedEl } = detail;
 
-      const { hand, droppedEl } = event.detail;
+      if (!droppedEl) return;
+
+      console.log("item dropped in barrel");
 
       droppedEl.removeAttribute("bind-position");
       droppedEl.removeAttribute("bind-rotation");
 
-      // position the fish randomly in the barrel y from bottom to 1 meter based on fishes count
+      // position fishes one on top of others
       droppedEl.setAttribute("position", {
-        x: this.el.position.x + Math.random() * 0.1,
-        y: this.el.position.y + 0.5 + fishes * 0.1,
-        z: this.el.position.z + Math.random() * 0.1,
+        x: this.el.object3D.position.x + Math.random() * 0.25,
+        y: fishes * 0.2,
+        z: this.el.object3D.position.z + Math.random() * 0.25,
       });
 
       fishes++;
 
-      // Emit an event when the barrel added a fish
-      // const changeEvent = new CustomEvent("change", {
-      //   detail: { fishes },
-      // });
-      // this.el.dispatchEvent(event);
+      //Emit an event when the barrel added a fish
+      const event = new CustomEvent("change", {
+        detail: { fishes },
+      });
+      this.el.dispatchEvent(event);
     });
   },
 });

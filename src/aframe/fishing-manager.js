@@ -10,8 +10,6 @@ AFRAME.registerComponent("fishing-manager", {
     this.startFishingAt = null;
     this.endFishingAt = null;
 
-    this.barrelFishesCount = 0;
-
     this.handFishing = document.querySelector("#hand-right");
 
     this.el.addEventListener("barrel-change", ({ detail }) => {
@@ -85,8 +83,6 @@ AFRAME.registerComponent("fishing-manager", {
       const force = 0.5;
       const duration = 1000;
       this.handFishing.components.haptics.pulse(force, duration);
-
-      // const fishEl = document.querySelector(`#fish-${barrelFishesCount}`);
 
       this.startFishingAt = new Date();
     }, randomTimeoutRange(5000, 10000));

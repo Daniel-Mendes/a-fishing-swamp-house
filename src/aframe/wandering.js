@@ -17,19 +17,5 @@ AFRAME.registerComponent("wandering", {
       Math.random() * Math.PI * 2,
       Math.random() * Math.PI * 2
     );
-
-    // Animation
-    // this.el.setAttribute("animation", {
-    //   property: "position",
-    //   to: {
-    //     x: x + Math.random() * 0.2,
-    //     y: y + Math.random() * 0.2,
-    //     z: z + Math.random() * 0.2,
-    //   },
-    //   loop: true,
-    //   dur: 1000 + Math.random() * 1000,
-    //   dir: "alternate",
-    //   easing: "easeInOutSine",
-    // });
   },
 });

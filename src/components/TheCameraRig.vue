@@ -19,13 +19,8 @@ import '../aframe/physx-grab.js';
       <a-entity id="dummy-hand-left" position="-0.3 -0.4 -0.5"></a-entity>
     </a-entity>
 
-    <a-entity id="hand-left" hand-controls="hand: left" Xblink-controls="
-          cameraRig: #camera-rig;
-          teleportOrigin: #head;
-          collisionEntities: [data-role='nav-mesh'];
-          snapTurn: false;
-        " position="0 1.5 0" laser-controls="hand: right" raycaster="far: 0.2; objects: [clickable]; showLine: true;"
-      physx-grab>
+    <a-entity id="hand-left" hand-controls="hand: left" position=" 0 1.5 0" laser-controls="hand: right"
+      raycaster="far: 0.2; objects: [clickable]; showLine: true;" physx-grab>
       <a-sphere id="hand-left-collider" radius="0.02" visible="false"
         physx-body="type: kinematic; emitCollisionEvents: true">
       </a-sphere>

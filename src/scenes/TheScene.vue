@@ -14,7 +14,7 @@ const allAssetsLoaded = ref(false);
     :webxr="`
       requiredFeatures: local-floor;
       referenceSpaceType: local-floor;
-    `" xr-mode-ui="XRMode: xr" physx="
+    `" xr-mode-ui="XRMode: xr" Xphysx="
       autoLoad: true;
       delay: 1000;
       useDefaultScene: false;
@@ -26,13 +26,12 @@ const allAssetsLoaded = ref(false);
       <a-asset-item id="house-model" src="assets/models/house.glb"></a-asset-item>
       <a-asset-item id="boat-model" src="assets/models/boat.glb"></a-asset-item>
       <a-asset-item id="bouet-model" src="assets/models/bouet.glb"></a-asset-item>
-      <a-asset-item id="bell-model" src="assets/models/bell_center.glb"></a-asset-item>
+      <a-asset-item id="bell-model" src="assets/models/bell.glb"></a-asset-item>
       <a-asset-item id="radio-model" src="assets/models/radio.glb"></a-asset-item>
       <a-asset-item id="firefly-model" src="assets/models/firefly.glb"></a-asset-item>
       <a-asset-item id="barrel-model" src="assets/models/barrel.glb"></a-asset-item>
       <a-asset-item id="fishing-rod-model" src="assets/models/fishing_rod.glb"></a-asset-item>
       <a-asset-item id="fishing-line-model" src="assets/models/fishing_line.glb"></a-asset-item>
-      <a-asset-item id="fishing-area-collider" src="assets/models/fishing_area_collider.glb"></a-asset-item>
       <a-asset-item id="trout-fish-model" src="assets/models/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
       <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav" preload="auto"></audio>

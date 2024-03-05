@@ -99,11 +99,9 @@ import '../aframe/wandering.js'
             density="50"></a-ocean>
     </a-entity>
 
-    <!-- The Lighthouse navigation mesh -->
-    <a-entity geometry="primitive: plane; height: 1.3; width: 3.3" position="0 0.01 0" rotation="-90 0 0"
+    <!-- The ouse navigation mesh -->
+    <a-entity geometry="primitive: plane; height: 1.3; width: 3.3" position="0 0.01 -0.05" rotation="-90 0 0"
         data-role="nav-mesh" material="color: red" visible="false"></a-entity>
-    <a-entity geometry="primitive: plane; height: 3.3; width: 0.9" position="1.2 0.01 1" rotation="-90 0 0"
-        data-role="nav-mesh" material="color: yellow" visible="false"></a-entity>
-    <a-entity geometry="primitive: plane; height: 1.8; width: 1.4" position="-0.2 0.01 1.3" rotation="-90 0 0"
+    <a-entity geometry="primitive: plane; height: 1; width: 1.4" position="-0.2 0.01 1" rotation="-90 0 0"
         data-role="nav-mesh" material="color: blue" visible="false"></a-entity>
 </template>

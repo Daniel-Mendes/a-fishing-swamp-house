@@ -31,14 +31,15 @@ import '../aframe/wandering.js'
 
         <a-entity v-for="index in 4" :key="index" :id="`firefly-${index}`" class="fireflies baits"
             gltf-model="#firefly-model" scale="0.3 0.3 0.3" wandering="position: -1.2 1 -1.5; radius: 1" look-at
-            clickable simple-grab event-rem__look-at="event: click; attribute: look-at">
+            clickable simple-grab event-rem__animation="event:click; attribute: animation"
+            event-rem__look-at="event: click; attribute: look-at">
         </a-entity>
 
         <a-entity id="barrel" gltf-model="#barrel-model" position="1.25 0 1" clickable
-            simple-grab-drop-zone="dropOnly: true; dropMultiple: true; allowed: .fishes, .baits" barrel-manager>
+            simple-grab-drop-zone="dropOnly: true; dropMultiple: true; allowed: .fishes" barrel-manager>
         </a-entity>
 
-        <a-entity id="radio" gltf-model="#radio-model" position="-0.077 0.297 1.493" clickable radio-player>
+        <a-entity id="radio" gltf-model="#radio-model" position="-0.08 0.3 1.5" clickable radio-player>
             <a-sound src="#radio-noise-sound" volume="1"></a-sound>
             <a-sound src="#swamp-1-sound" volume="0.4"></a-sound>
             <a-sound src="#radio-noise-sound" volume="1"></a-sound>
@@ -54,8 +55,8 @@ import '../aframe/wandering.js'
 
     <a-entity id="fishing-line" gltf-model="#fishing-line-model" bind-position="target: #fishing-rod-anchor">
         <a-box id="fishing-hook" width="0.1" height="0.1" depth="0.1" position="0 -1.32 0" opacity="0"
-            transparent="true" alpha-test="1" clickable simple-grab-drop-zone="dropOnly: false; dynamic: true"
-            data-aabb-collider-dynamic
+            transparent="true" alpha-test="1" clickable
+            simple-grab-drop-zone="dropOnly: false; dynamic: true; allowed: .baits" data-aabb-collider-dynamic
             listen-to__fish_caught="target: #fishing-area-air-collider; event: fish-caught; emit: fish-caught"
             listen-to__fish_not_caught="target: #fishing-area-air-collider; event: fish-not-caught; emit: fish-not-caught"
             fishing-hook-manager>
@@ -63,11 +64,22 @@ import '../aframe/wandering.js'
     </a-entity>
 
     <!-- Fishes-->
-    <a-entity gltf-model="#trout-fish-model" class="fishes" id="fish-0" visible="false"
-        animation="property: rotation; from: 0 75 0; to: 0 105 0; dur: 1000; dir: alternate; easing: easeInOutSine; loop: true;"
-        clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable>
-    </a-entity>
+    <a-entity gltf-model="#angler-fish-model" scale="0.15 0.15 0.15" animation-mixer class="fishes" id="fish-0"
+        visible="false" clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
+        event-rem__bind-pos="event: click; attribute: bind-position"></a-entity>
 
+    <a-entity gltf-model="#blue-fish-model" scale="0.1 0.1 0.1" animation-mixer class="fishes" id="fish-1"
+        visible="false" clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
+        event-rem__bind-pos="event: click; attribute: bind-position"></a-entity>
+
+    <a-entity gltf-model="#crappies-fish-model" animation-mixer class="fishes" id="fish-2" visible="false" clickable
+        simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
+        event-rem__bind-pos="event: click; attribute: bind-position"></a-entity>
+
+    <a-entity gltf-model="#trout-fish-model" animation-mixer class="fishes" id="fish-3" visible="false" clickable
+        simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
+        event-rem__bind-pos="event: click; attribute: bind-position">
+    </a-entity>
 
     <!-- Fishing area -->
     <a-box id="fishing-area-air-collider" class="fishing-area-collider" width="10" depth="10" height="3"

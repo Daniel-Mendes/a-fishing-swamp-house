@@ -1,6 +1,6 @@
 <script setup>
 import { ref } from 'vue';
-import TheOnboarding from './components/TheOnboarding.vue';
+import TheOnboarding from './scenes/TheOnboarding.vue';
 import TheScene from './scenes/TheScene.vue';
 
 const scale = ref(1);

@@ -2,6 +2,11 @@ AFRAME.registerState({
   initialState: {
     isFishing: false,
 
+    fishingArea: {
+      airCollide: true,
+      houseCollide: true,
+    },
+
     hands: {
       left: {
         holdingEl: null,
@@ -35,6 +40,14 @@ AFRAME.registerState({
       return !!state.hands[action.hand].holdingEl;
     },
 
+    setFishingAreaAirCollide: (state, action) => {
+      state.fishingArea.airCollide = action.airCollide;
+    },
+
+    setFishingAreaHouseCollide: (state, action) => {
+      state.fishingArea.houseCollide = action.houseCollide;
+    },
+
     setHoldingEl: (state, action) => {
       state.hands[action.hand].holdingEl = action.el;
     },
@@ -54,21 +67,5 @@ AFRAME.registerState({
     hasCatch: (state, action) => {
       return !!state.fishingRod.hook.catchEl;
     },
-  },
-
-  computeState: (state) => {
-    state.isFishing =
-      (state.hands.left.holdingEl === "fishingRod" ||
-        state.hands.right.holdingEl === "fishingRod") &&
-      state.weapons.fishingRod.hook.isInWater &&
-      state.weapons.fishingRod.hook.baitEl &&
-      !state.weapons.fishingRod.hook.catchEl;
-
-    // hasn't weapon in hand -> return false
-    // weapon catch anything -> return false
-    // if fishing spear -> return true
-    // if fishing rod hasn't baitEl -> return false
-    // isn't in water -> return false
-    // return true
   },
 });

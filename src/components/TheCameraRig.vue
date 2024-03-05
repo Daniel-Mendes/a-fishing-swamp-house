@@ -11,14 +11,31 @@ import '../aframe/physx-grab.js';
 
     <a-entity id="head" look-controls="pointerLockEnabled: true"
       simple-navmesh-constraint="navmesh: [data-role='nav-mesh']; height: 1.65;"
-      disable-in-vr="component: simple-navmesh-constraint;" camera position="0 1.6 0">
+      disable-in-vr="component: simple-navmesh-constraint;" camera position="0 1.65 0">
       <a-entity geometry="primitive: circle; radius: 0.0003;" material="shader: flat; color: white;" cursor
         raycaster="far: 4; objects: [clickable]; showLine: false;" position="0 0 -0.1"
         disable-in-vr="component: raycaster; disableInAR: false;" hide-in-vr="hideInAR: false"></a-entity>
+      <a-entity id="dummy-hand-right" position="0.3 -0.4 -0.5"></a-entity>
+      <a-entity id="dummy-hand-left" position="-0.3 -0.4 -0.5"></a-entity>
     </a-entity>
 
-    <a-entity id="hand-left" hand-controls="hand: left;"></a-entity>
+    <a-entity id="hand-left" hand-controls="hand: left" Xblink-controls="
+          cameraRig: #camera-rig;
+          teleportOrigin: #head;
+          collisionEntities: [data-role='nav-mesh'];
+          snapTurn: false;
+        " position="0 1.5 0" laser-controls="hand: right" raycaster="far: 0.2; objects: [clickable]; showLine: true;"
+      physx-grab>
+      <a-sphere id="hand-left-collider" radius="0.02" visible="false"
+        physx-body="type: kinematic; emitCollisionEvents: true">
+      </a-sphere>
+    </a-entity>
 
-    <a-entity id="hand-right" hand-controls="hand: right" haptics></a-entity>
+    <a-entity id="hand-right" hand-controls="hand: right" position="0 1.5 0" haptics>
+      <a-sphere id="hand-right-collider" radius="0.02" visible="false"
+        physx-body="type: kinematic; emitCollisionEvents: true">
+      </a-sphere>
+    </a-entity>
+
   </a-entity>
 </template>

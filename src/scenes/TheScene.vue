@@ -2,13 +2,15 @@
 import { ref } from 'vue';
 
 import TheCameraRig from '../components/TheCameraRig.vue';
-import TheLighthouseScene from './TheLighthouseScene.vue';
+import TheFishingScene from './TheFishingScene.vue';
+
+import '../aframe/simple-grab.js';
 
 const allAssetsLoaded = ref(false);
 </script>
 
 <template>
-  <a-scene renderer="antialias: true;" fog="type: linear; color: #3A3D1F; near: 3; far: 10" background="color: black;"
+  <a-scene renderer="antialias: true;" Xfog="type: linear; color: #3A3D1F; near: 3; far: 10" background="color: black;"
     :webxr="`
       requiredFeatures: local-floor;
       referenceSpaceType: local-floor;
@@ -17,7 +19,7 @@ const allAssetsLoaded = ref(false);
       delay: 1000;
       useDefaultScene: false;
       wasmUrl: lib/physx.release.wasm;
-    ">
+    " simple-grab>
 
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Models -->
@@ -30,6 +32,7 @@ const allAssetsLoaded = ref(false);
       <a-asset-item id="barrel-model" src="assets/models/barrel.glb"></a-asset-item>
       <a-asset-item id="fishing-rod-model" src="assets/models/fishing_rod.glb"></a-asset-item>
       <a-asset-item id="fishing-line-model" src="assets/models/fishing_line.glb"></a-asset-item>
+      <a-asset-item id="fishing-area-collider" src="assets/models/fishing_area_collider.glb"></a-asset-item>
       <a-asset-item id="trout-fish-model" src="assets/models/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
       <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav" preload="auto"></audio>
@@ -39,7 +42,7 @@ const allAssetsLoaded = ref(false);
     </a-assets>
 
     <template v-if="allAssetsLoaded">
-      <TheLighthouseScene />
+      <TheFishingScene />
     </template>
 
     <TheCameraRig />

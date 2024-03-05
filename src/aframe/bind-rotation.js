@@ -1,8 +1,11 @@
+import { copyRotation } from "../utils/aframe.js";
+
 AFRAME.registerComponent("bind-rotation", {
   schema: {
     target: { type: "selector" },
+    convertToLocal: { type: "boolean", default: false },
   },
   tick: function () {
-    this.el.object3D.rotation.copy(this.data.target.object3D.rotation);
+    copyRotation(this.data.target, this.el, this.data.convertToLocal);
   },
 });

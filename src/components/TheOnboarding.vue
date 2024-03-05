@@ -18,7 +18,7 @@ function enterScene() {
 <template>
   <div id="onboarding" v-if="showOnboarding">
     <div>
-      <h1>A Swamp Lighthouse - Fishing Game</h1>
+      <h1>A Fishing In Swamp House</h1>
       <p v-if="!loaded">loading...</p>
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
       <div class="licences">
@@ -74,6 +74,16 @@ function enterScene() {
           </dd>
 
           <dt>
+            <a href="https://sketchfab.com/3d-models/fishermans-hideout-a66a186183524df6869455f0fcbf35b4" target="_blank">
+              Fisherman's Hideout
+            </a>
+          </dt>
+          <dd>
+            by <a href="https://sketchfab.com/HalfAsleepArtist" target="_blank">HalfAsleepArtist</a>
+            under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
+          </dd>
+
+          <!-- <dt>
             <a href="https://sketchfab.com/3d-models/vr-gallery-1ac32ed62fdf424498acc146fad31f7e" target="_blank">VR
               Gallery</a>
           </dt>
@@ -89,7 +99,7 @@ function enterScene() {
           <dd>
             by <a href="https://sketchfab.com/tekuto1s" target="_blank">tekuto1s</a>
             under <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">CC BY 4.0</a>
-          </dd>
+          </dd> -->
         </dl>
       </div>
     </div>

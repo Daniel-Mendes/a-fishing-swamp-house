@@ -12,12 +12,8 @@ AFRAME.registerComponent("listen-to", {
     this.data.target.addEventListener(this.data.event, this.onEvent);
   },
 
-  onEvent: function (e) {
-    const event = new CustomEvent(this.data.emit, {
-      detail: e.detail,
-    });
-
-    this.el.dispatchEvent(event);
+  onEvent: function (evt) {
+    this.el.emit(this.data.emit, evt.detail);
   },
 
   update: function (oldData) {

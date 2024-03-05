@@ -16,6 +16,6 @@ AFRAME.registerComponent("event-rem", {
   },
 
   onEvent: function (evt) {
-    AFRAME.utils.entity.removeComponentProperty(this.el, this.data.attribute);
+    this.el.removeAttribute(this.data.attribute);
   },
 });

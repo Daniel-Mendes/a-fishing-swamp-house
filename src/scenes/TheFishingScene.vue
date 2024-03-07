@@ -6,15 +6,16 @@ import '../aframe/emit-when-near.js';
 import '../aframe/event-set.js';
 import '../aframe/event-rem.js';
 import '../aframe/look-at.js';
-import '../aframe/listen-to.js'
+import '../aframe/listen-to.js';
 
 import '../aframe/radio-player.js';
-import '../aframe/barrel-manager.js'
+import '../aframe/barrel-manager.js';
 import '../aframe/bell-manager.js';
+import '../aframe/fishing-rod-manager.js';
 import '../aframe/fishing-hook-manager.js';
-import '../aframe/fishing-manager.js'
+import '../aframe/fishing-manager.js';
 
-import '../aframe/wandering.js'
+import '../aframe/wandering.js';
 </script>
 
 <template>
@@ -26,7 +27,7 @@ import '../aframe/wandering.js'
 
     <a-entity id="house" gltf-model="#house-model" animation-mixer position="0 0 0" shadow="cast:true; receive:true;">
         <a-entity id="lantern-light-source"
-            light="type: point; intensity: 1; distance: 5; color: #fae3a2; groundColor: #B49A70; castShadow: true; shadowCameraFar: 25; shadowBias: -0.001; shadowMapHeight: 2048; shadowMapWidth: 2048; shadowCameraLeft: -50; shadowCameraRight: 50; shadowCameraBottom: -50; shadowCameraTop: 50"
+            light="type: point; intensity: 1; distance: 5; color: #fae3a2; groundColor: #997740; castShadow: true; shadowCameraFar: 25; shadowBias: -0.001; shadowMapHeight: 2048; shadowMapWidth: 2048; shadowCameraLeft: -50; shadowCameraRight: 50; shadowCameraBottom: -50; shadowCameraTop: 50"
             position="-0.91582 1.16042 -1.1516" scale="0.1 0.1 0.1"></a-entity>
 
         <a-entity v-for="index in 4" :key="index" :id="`firefly-${index}`" class="fireflies baits"
@@ -47,8 +48,7 @@ import '../aframe/wandering.js'
         </a-entity>
     </a-entity>
 
-    <a-entity id="fishing-rod" gltf-model="#fishing-rod-model" bind-position="target: #dummy-hand-right"
-        bind-rotation="target: #dummy-hand-right">
+    <a-entity id="fishing-rod" gltf-model="#fishing-rod-model" fishing-rod-manager>
         <a-box id="fishing-rod-anchor" width="0.02" height="0.02" depth="0.02" position="-0.017 -0.013 -1.352"
             color="blue" opacity="0" transparent="true" alpha-test="1" visible="false"></a-box>
     </a-entity>

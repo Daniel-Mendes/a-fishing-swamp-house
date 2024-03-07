@@ -35,9 +35,10 @@ const allAssetsLoaded = ref(false);
       <a-asset-item id="crappies-fish-model" src="assets/models/fishes/crappies_fish.glb"></a-asset-item>
       <a-asset-item id="trout-fish-model" src="assets/models/fishes/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
-      <audio id="radio-noise-sound" src="assets/sounds/radio-noise.wav" preload="auto"></audio>
-      <audio id="swamp-1-sound" src="assets/sounds/swamp-1.ogg" preload="auto"></audio>
-      <audio id="swamp-2-sound" src="assets/sounds/swamp-2.ogg" preload="auto"></audio>
+      <a-asset-item id="radio-noise-sound" src="assets/sounds/radio-noise.wav"
+        response-type="arraybuffer"></a-asset-item>
+      <a-asset-item id="swamp-1-sound" src="assets/sounds/swamp-1.ogg" response-type="arraybuffer"></a-asset-item>
+      <a-asset-item id="swamp-2-sound" src="assets/sounds/swamp-2.ogg" response-type="arraybuffer"></a-asset-item>
     </a-assets>
 
     <template v-if="allAssetsLoaded">

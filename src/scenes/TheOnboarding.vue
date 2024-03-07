@@ -22,7 +22,7 @@ function enterScene() {
       <img src="/assets/game-preview.png" alt="Game screenshot preview" />
 
       <p v-if="!loaded">loading...</p>
-      <button v-if="loaded" @click="enterScene()">Enter scene</button>
+      <button v-if="loaded" @click="enterScene()">Start game</button>
 
       <div class="licences">
         <section>

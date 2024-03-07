@@ -18,9 +18,12 @@ function enterScene() {
 <template>
   <div id="onboarding" v-if="showOnboarding">
     <div>
-      <h1>A Fishing In Swamp House</h1>
+      <h1>A Fishing Swamp House</h1>
+      <img src="/assets/game-preview.png" alt="Game screenshot preview" />
+
       <p v-if="!loaded">loading...</p>
       <button v-if="loaded" @click="enterScene()">Enter scene</button>
+
       <div class="licences">
         <section>
           <h4>Tutorial</h4>
@@ -152,6 +155,10 @@ a {
   text-decoration: none;
 }
 
+img {
+  width: 100%;
+}
+
 .licences {
   margin: 2rem 0;
   font-size: 1rem;
@@ -195,6 +202,7 @@ a {
 
 #onboarding button {
   font-size: 1.3rem;
+  margin-top: 0.5rem;
   padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   background-color: #f9ca24;

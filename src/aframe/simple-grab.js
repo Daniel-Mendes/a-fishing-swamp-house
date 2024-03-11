@@ -80,6 +80,13 @@ AFRAME.registerComponent("simple-grab", {
     // If something already grabbed, switch it
     const currentGrab = this.system.getCurrentGrab(this.grabbedBy);
     if (currentGrab) {
+      // Remove possible bind-position and bind-rotation
+      console.log("currentGrab", currentGrab);
+      console.log("this.el", this.el);
+
+      this.el.removeAttribute("bind-position");
+      this.el.removeAttribute("bind-rotation");
+
       copyPosition(this.el, currentGrab);
       copyRotation(this.el, currentGrab);
       currentGrab.components["simple-grab"].grabbedBy = null;
@@ -160,6 +167,9 @@ AFRAME.registerComponent("simple-grab-drop-zone", {
       this.system.removeCurrentGrab(this.grabbedBy);
 
       if (this.data.dynamic) {
+        console.log("dynamic");
+        console.log("currentGrab", currentGrab);
+        console.log("this.el", this.el);
         currentGrab.setAttribute("bind-position", `target: #${this.el.id}`);
         currentGrab.setAttribute("bind-rotation", `target: #${this.el.id}`);
       } else {

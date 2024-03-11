@@ -36,16 +36,17 @@ import '../aframe/wandering.js';
             event-rem__look-at="event: click; attribute: look-at">
         </a-entity>
 
-        <a-entity id="barrel" gltf-model="#barrel-model" position="1.25 0 1" clickable
-            simple-grab-drop-zone="dropOnly: true; dropMultiple: true; allowed: .fishes" barrel-manager>
-        </a-entity>
+        <a-sphere id="barrel-hitbox" radius="0.3" position="1.25 0.3 1.05" visible="false" clickable
+            simple-grab-drop-zone="dropOnly: true; dropMultiple: true; allowed: .fishes, .baits"
+            barrel-manager></a-sphere>
 
-        <a-entity id="radio" gltf-model="#radio-model" position="-0.08 0.3 1.5" clickable radio-player>
+        <a-box id="radio-hitbox" width="0.5" depth="0.25" height="0.3" position="-0.08 0.5 1.6" visible="false"
+            clickable radio-player>
             <a-sound src="#radio-noise-sound" volume="1"></a-sound>
             <a-sound src="#swamp-1-sound" volume="0.4"></a-sound>
             <a-sound src="#radio-noise-sound" volume="1"></a-sound>
             <a-sound src="#swamp-2-sound" volume="0.4"></a-sound>
-        </a-entity>
+        </a-box>
     </a-entity>
 
     <a-entity id="fishing-rod" gltf-model="#fishing-rod-model" fishing-rod-manager>
@@ -64,28 +65,26 @@ import '../aframe/wandering.js';
     </a-entity>
 
     <!-- Fishes-->
-    <a-entity gltf-model="#angler-fish-model" scale="0.15 0.15 0.15" animation-mixer class="fishes" id="fish-0"
-        visible="false" clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
-        event-rem__bind-pos="event: click; attribute: bind-position"></a-entity>
+    <a-entity gltf-model="#orange-fish-model" animation-mixer class="fishes" id="fish-0" visible="false" clickable
+        simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable event-set></a-entity>
 
-    <a-entity gltf-model="#blue-fish-model" scale="0.1 0.1 0.1" animation-mixer class="fishes" id="fish-1"
-        visible="false" clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
-        event-rem__bind-pos="event: click; attribute: bind-position"></a-entity>
+    <a-entity gltf-model="#blue-fish-model" scale="0.08 0.08 0.08" animation-mixer class="fishes" id="fish-1"
+        visible="false" clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true"
+        physx-grabbable></a-entity>
 
-    <a-entity gltf-model="#crappies-fish-model" animation-mixer class="fishes" id="fish-2" visible="false" clickable
-        simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
-        event-rem__bind-pos="event: click; attribute: bind-position"></a-entity>
+    <a-entity gltf-model="#crappies-fish-model" scale="0.5 0.5 0.5" animation-mixer class="fishes" id="fish-2"
+        visible="false" clickable simple-grab physx-body="type: kinematic; emitCollisionEvents: true"
+        physx-grabbable></a-entity>
 
     <a-entity gltf-model="#trout-fish-model" animation-mixer class="fishes" id="fish-3" visible="false" clickable
-        simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable
-        event-rem__bind-pos="event: click; attribute: bind-position">
+        simple-grab physx-body="type: kinematic; emitCollisionEvents: true" physx-grabbable>
     </a-entity>
 
     <!-- Fishing area -->
     <a-box id="fishing-area-air-collider" class="fishing-area-collider" width="10" depth="10" height="3"
         position="0 1.6 0" color="red" opacity="0.5" visible="false" aabb-collider="objects: #fishing-hook;"
         fishing-manager="colliders: .fishing-area-collider"
-        listen-to__barrel_change="target: #barrel; event: change; emit: barrel-change">
+        listen-to__barrel_change="target: #barrel-hitbox; event: change; emit: barrel-change">
     </a-box>
 
     <a-box id="fishing-area-house-collider" class="fishing-area-collider" width="3.3" depth="3.3" height="6"

@@ -18,9 +18,6 @@ AFRAME.registerComponent("fishing-hook-manager", {
 
     this.el.addEventListener("fish-not-caught", ({ detail }) => {
       console.log("weapon did not catch fish");
-
-      const fishEl = detail.fishEl;
-      fishEl.setAttribute("visible", false);
     });
   },
 });

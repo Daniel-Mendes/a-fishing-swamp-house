@@ -24,15 +24,13 @@ const allAssetsLoaded = ref(false);
     <a-assets @loaded="allAssetsLoaded = true">
       <!-- Models -->
       <a-asset-item id="house-model" src="assets/models/house.glb"></a-asset-item>
-      <a-asset-item id="radio-model" src="assets/models/radio.glb"></a-asset-item>
       <a-asset-item id="firefly-model" src="assets/models/firefly.glb"></a-asset-item>
-      <a-asset-item id="barrel-model" src="assets/models/barrel.glb"></a-asset-item>
       <a-asset-item id="fishing-rod-model" src="assets/models/fishing_rod.glb"></a-asset-item>
       <a-asset-item id="fishing-line-model" src="assets/models/fishing_line.glb"></a-asset-item>
       <!-- Fishes -->
-      <a-asset-item id="angler-fish-model" src="assets/models/fishes/angler_fish.glb"></a-asset-item>
       <a-asset-item id="blue-fish-model" src="assets/models/fishes/blue_fish.glb"></a-asset-item>
       <a-asset-item id="crappies-fish-model" src="assets/models/fishes/crappies_fish.glb"></a-asset-item>
+      <a-asset-item id="orange-fish-model" src="assets/models/fishes/orange_fish.glb"></a-asset-item>
       <a-asset-item id="trout-fish-model" src="assets/models/fishes/trout_fish.glb"></a-asset-item>
       <!-- Audios -->
       <a-asset-item id="radio-noise-sound" src="assets/sounds/radio-noise.wav"
